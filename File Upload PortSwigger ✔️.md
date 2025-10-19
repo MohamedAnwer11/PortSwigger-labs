@@ -22,8 +22,8 @@ Main Points for File Upload:
 ```
 
 ---
+![[attachments/Pasted image 20251019151033.png]]
 
-![[Pasted image 20251019151033.png]]
 # Image
 
 
