@@ -23,7 +23,7 @@ Main Points for File Upload:
 
 ---
 
-
+![[Pasted image 20251019151033.png]]
 # Image
 
 
