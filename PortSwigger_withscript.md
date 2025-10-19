@@ -42,6 +42,7 @@ Once you enter this lab you have the credentials with username : wiener  |  pass
 and the you have the file upload vulnerable image upload function. It doesn't perform any validation on the files users upload before storing them on the server's filesystem
 
 ![](assets/1.png)
+
 for this you can try to upload file that content the shell you can create this 
 
 ```PHP
@@ -52,10 +53,12 @@ echo "<pre>$output</pre>";
 ```
 
 ![](assets/2.png)
+
 uploaded Successfully
 this small code open the shell on the server and you can write the any command on the server.
 
 ![](assets/4.png)
+
 Now get the path for the image you uploaded 
 Follow this with the ?cmd=id to get userId
 
@@ -106,8 +109,10 @@ the type image/png and type image/jpeg accept this
 Now change the type and send the request.
 
 ![](assets/Pasted%20image%2020251017234415.png)
+
 and it uploaded successfully 
 Check if the shell work or not by write and command like `cmd=id`
+
 ![](assets/Pasted%20image%2020251017234532.png)
 
 Now the Target to get the path of the `/home/carlos/secret` you can make this if this file on your machine with use command `cat /home/carlos/secret`.
@@ -115,6 +120,7 @@ Now the Target to get the path of the `/home/carlos/secret` you can make this if
 ![](assets/Pasted%20image%2020251017234702.png)
 
 Congratulations, You got the flag🎉🎉🎉.
+
 ![](assets/Pasted%20image%2020251017234802.png)
 
 
@@ -138,21 +144,31 @@ The server is configured to prevent execution of user-supplied files, but this r
 
 
 ![](assets/1.png)
+
 you can upload the shell.php that have the exploit code 
+
 ![](assets/Pasted%20image%2020251017235909.png)
+
 It uploaded successfully but i have a problem
 when i get the path for this shell file it show the content for the image as a text
 
 ![](assets/Pasted%20image%2020251017235748.png)
+
 you can try to use file traversal to solve this problem
 you can add the `../` before the name of your upload file and don't forget to decode this with URL encoding to bypass this to get the file name `%2e%2e%2fshell.php`
+
 ![](assets/Pasted%20image%2020251018000549.png)
 
 and the file upload successfully now you want to test the shell script 
+
 ![](assets/Pasted%20image%2020251018000815.png)
+
 Now the Target to get the path of the `/home/carlos/secret` you can make this if this file on your machine with use command `cat /home/carlos/secret`.
+
 ![](assets/Pasted%20image%2020251018000928.png)
+
 Congratulations, You got the flag🎉🎉🎉.
+
 ![](assets/Pasted%20image%2020251018001023.png)
 
 
@@ -228,18 +244,26 @@ Once you enter this lab you have the credentials with username : wiener  |  pass
 this lab has vulnerable image upload function. Certain file extensions are blacklisted, but this defense can be bypassed using a classic obfuscation technique.
 
 ![](assets/1.png)
+
 you can upload the file that content the shell in the upload field and this not allowed because it but the block list to be more secure but he can forget anything can not add in this list you can try `shell.php%00.png` and this will uploaded
 
 ![](assets/Pasted%20image%2020251018014649.png)
+
 you can go to the path for the file to test that if it uploaded of not 
 
 ![](assets/Pasted%20image%2020251018014219.png)
-noe test with the command `?cmd=id` to see the userId
+
+now test with the command `?cmd=id` to see the userId
 Good It works
+
 ![](assets/Pasted%20image%2020251018014306.png)
+
 Now the Target to get the path of the `/home/carlos/secret` you can make this if this file on your machine with use command `cat /home/carlos/secret`.
+
 ![](assets/Pasted%20image%2020251018014415.png)
+
 Congratulations, You got the Flag🎉🎉🎉.
+
 ![](assets/Pasted%20image%2020251018014509.png)
 
 
@@ -263,11 +287,13 @@ Once you enter this lab you have the credentials with username : wiener  |  pass
 this lab has vulnerable image upload function. Certain file extensions are blacklisted, but this defense can be bypassed using a classic obfuscation technique.
 
 ![](assets/1.png)
+
 you can upload the file that content the shell in the upload field and this not allowed because it check the content of the shell script i can use the **polyglot web shell**
 
 The **polyglot web shell** technique works by creating a file that is both a valid image and a functional PHP script. The server accepts it because it validates the file as a legitimate image (based on structure or magic bytes), but when accessed, the PHP interpreter processes embedded code in the image’s metadata
 
 to understand this if you have an image called "Me.jpg" you can use tool called **exifable** to get the information for this image.
+
 ![](assets/Pasted%20image%2020251018024350.png)
 
 this tool has the option that you can add the comment to this image 
@@ -282,6 +308,7 @@ Now show the Information of the image again you can see this comment on the imag
 Idea that you can use that you can put the payload on the comment with this tool and the output for this put it file called `polyglot.php`
 
 ![](assets/Pasted%20image%2020251018024706.png)
+
 and upload this file to the server
 
 ![](assets/Pasted%20image%2020251018023736.png)
