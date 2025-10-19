@@ -26,6 +26,7 @@ Main Points for File Upload:
 
 # Image
 
+
 ![[Pasted image 20251018044423.png]]
 
 ## 1. Lab: Remote code execution via web shell upload
