@@ -241,9 +241,9 @@ Or you can use the Best way Use the SQLMap tool
 	
 	3.dump database `python3 sqlmap.py -r fileyousave -D public --tables!`
 	
-	![](assets/Pasted%20image%2020251010023648.png)
+![](assets/Pasted%20image%2020251010023648.png)
 	
-	![](assets/Pasted%20image%2020251010023710.png)
+![](assets/Pasted%20image%2020251010023710.png)
 
 	4. get the tables name `python3 sqlmap.py -r fileyousave -D public `
 
