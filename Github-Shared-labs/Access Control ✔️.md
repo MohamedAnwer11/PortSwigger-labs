@@ -1,4 +1,8 @@
 
+
+# 1. Lab: Insecure direct object references
+
+
 **Instructions**
 
 This lab stores user chat logs directly on the server's file system, and retrieves them using static URLs.
